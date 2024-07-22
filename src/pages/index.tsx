@@ -1,27 +1,18 @@
-import { useRouter } from "next/router";
-import Characters from "./components/Characters";
+/* import { useRouter } from "next/router"; */
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Home({ data }: any) {
   const [characters, setCharacters] = useState(data?.results);
   const [status, setStatus] = useState("");
-  /*   let arr = characters.flat(); */
 
   function uniqueFilter(value, index, self) {
     return self.indexOf(value) === index;
   }
 
   const newArray = characters.filter(uniqueFilter);
-
-  /*   console.log(arr); */
-  /*   const [handleStatus, setHandleStatus] = useState(""); */
-  const router = useRouter();
-
-  /*  const handleRouter = (data: string) => {
-    router.push(data);
-    console.log(data);
-  }; */
+  /* 
+  const router = useRouter(); */
 
   const handleStatus = (status) => {
     console.log(status);
@@ -41,22 +32,6 @@ export default function Home({ data }: any) {
       sendStatus();
     }
   }, [status]);
-
-  /* useEffect(() => {
-    const sendStatus = async () => {
-      console.log(router.query);
-      const res = await fetch(
-        "https://rickandmortyapi.com/api/character/" + router.query
-      );
-      const data = await res.json();
-      setCharacters(data.results);
-    };
-    sendStatus();
-  }, [router.query handleStatus]); */
-
-  console.log(router.query);
-
-  /*   console.log(data?.results); */
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-slate-950 m-8 ">
@@ -102,8 +77,6 @@ export default function Home({ data }: any) {
           </div>
         </div>
       </header>
-
-      {/*      <Characters characters={characters} /> */}
 
       <div className="grid grid-cols-5 gap-4 ">
         {characters &&
